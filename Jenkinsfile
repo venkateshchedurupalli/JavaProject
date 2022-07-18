@@ -40,11 +40,13 @@ pipeline {
         //}
 		
 		stage('Advance') {
+			steps{
            when {
                 expression{
                     params.executeTests
                 }
 	   }
+			}
 		}
   
   
