@@ -39,7 +39,7 @@ pipeline {
 		  //}
         //}
 		
-		stage('Test') {
+		stage('Advance') {
            when {
                 expression{
                     params.executeTests
