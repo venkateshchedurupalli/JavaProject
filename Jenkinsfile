@@ -23,10 +23,16 @@ pipeline {
         }
 
        stage('Code Testing') {
+	       if(ENABLE_TESTING == "true"){
             steps {
                withSonarQubeEnv('sonar-9'){
-                 sh "mvn  sonar:sonar"  }
-            }
+                 sh "mvn  sonar:sonar" 
+				 }
+                }
+		     }
+		  else{
+		   echo "skipping testing";
+		  }
         }
   
         
