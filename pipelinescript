@@ -1,9 +1,10 @@
+
 pipeline{
   agent any
   stages{
     stage("Git Checkout"){
       steps{
-	        git branch: 'master',git credentialsId: 'github-cred',url: 'https://github.com/venkateshchedurupalli/JavaProject.git'
+	        git branch: 'master',url: 'https://github.com/venkateshchedurupalli/JavaProject.git'
            }
           }
      stage("Maven Build"){
