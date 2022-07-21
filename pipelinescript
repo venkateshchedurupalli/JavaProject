@@ -16,7 +16,8 @@ pipeline{
      stage("Maven Build"){
        steps{
             sh "mvn clean package"
-            sh "mv cd /var/lib/jenkins/workspace/Java/target/*.war cd /var/lib/jenkins/workspace/Java/target/myweb.war"
+            //sh "mv cd /var/lib/jenkins/workspace/Java/target/*.war cd /var/lib/jenkins/workspace/Java/target/myweb.war"
+			sh "mv target/*.jar target/myweb.jar"
              }
             }
 			
@@ -24,7 +25,7 @@ pipeline{
        steps{
           sshagent(['tomcat_deploy']) {
           sh """
-          scp -o StrictHostKeyChecking=no target/myweb.war  
+          scp -o StrictHostKeyChecking=no target/myweb.jar  
           ec2-user@18.220.57.95:/opt/tomcat/webapps/
           ssh ec2-uer@18.220.57.95 /opt/tomcat/bin/shutdown.sh
           ssh ec2-user@18.220.57.95 /opt/tomcat/bin/startup.sh
