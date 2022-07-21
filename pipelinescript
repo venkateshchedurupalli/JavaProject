@@ -1,18 +1,25 @@
 
 pipeline{
   agent any
+   tools{
+      maven 'M2_HOME'
+      jdk 'JAVA_HOME'
+	}
+	
   stages{
     stage("Git Checkout"){
       steps{
 	        git branch: 'master',url: 'https://github.com/venkateshchedurupalli/JavaProject.git'
            }
           }
+		  
      stage("Maven Build"){
        steps{
             sh "mvn clean package"
             sh "mv target/*.war target/myweb.war"
              }
             }
+			
      stage("deploy-dev"){
        steps{
           sshagent(['tomcat_deploy']) {
